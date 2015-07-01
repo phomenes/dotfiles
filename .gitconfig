@@ -1,0 +1,12 @@
+[user]
+    email = fomen@outlook.com
+    name = fomen
+[core]
+    excludesfile = ~/.gitignore_global
+    editor = notepad
+[diff]
+    tool = kdiff3
+[merge]
+    tool = kdiff3
+[commit]
+    status = false
