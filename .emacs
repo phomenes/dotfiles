@@ -19,13 +19,17 @@
 (setq auto-save-list-file-name nil)
 (setq auto-save-default nil)
 
-(set-default-font "Consolas-12")
+(set-default-font "Ubuntu Mono-12")
 
 (set-input-method 'russian-computer)
 (toggle-input-method)
 (global-set-key [f1] 'toggle-input-method)
 
 (column-number-mode t)
+
+(setq tooltip-use-echo-area t)
+
+(electric-indent-mode t)
 
 (show-paren-mode t)
 (setq show-paren-delay 0)
@@ -54,3 +58,16 @@
 
 (require 'flx-ido)
 (flx-ido-mode t)
+
+;; golang
+
+(add-hook 'before-save-hook #'gofmt-before-save)
+
+(add-hook 'go-mode-hook
+	  (lambda ()
+	    (setq tab-width 4)))
+
+;; clojure
+
+(add-hook 'cider-mode-hook #'eldoc-mode)
+(setq nrepl-hide-special-buffers t)
