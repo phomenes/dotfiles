@@ -40,8 +40,6 @@
 ;(setq auto-save-list-file-name nil)
 ;(setq auto-save-default nil)
 
-(set-default-font "Ubuntu Mono-12")
-
 (set-input-method 'russian-computer)
 (toggle-input-method)
 (global-set-key [f1] 'toggle-input-method)
