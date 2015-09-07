@@ -1,9 +1,30 @@
+;; packages
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
+(setq package-enable-at-startup nil)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(let ((packages '(monokai-theme evil auto-complete neotree flx-ido clojure-mode cider go-mode)))
+  (dolist (package packages)
+    (unless (package-installed-p package)
+      (package-install package))))
+
+;; theme
 
 (add-to-list 'custom-safe-themes "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40")
 (load-theme 'monokai t)
+
+;; font
+
+(set-default-font
+ (cond ((string-equal system-type "gnu/linux") "Ubuntu Mono-12")
+       ((string-equal system-type "windows-nt") "Consolas-12")))
+
+;; settings
 
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
@@ -15,9 +36,9 @@
 
 (setq scroll-step 1)
 
-(setq make-backup-files nil)
-(setq auto-save-list-file-name nil)
-(setq auto-save-default nil)
+;(setq make-backup-files nil)
+;(setq auto-save-list-file-name nil)
+;(setq auto-save-default nil)
 
 (set-default-font "Ubuntu Mono-12")
 
@@ -42,16 +63,10 @@
 (evil-mode t)
 (setq evil-auto-indent t)
 
-(require 'evil-surround)
-(global-evil-surround-mode t)
-
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
 (add-to-list 'ac-modes 'sql-mode)
-
-(require 'yasnippet)
-(yas-global-mode t)
 
 (require 'neotree)
 (global-set-key [f12] 'neotree-toggle)
