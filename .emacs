@@ -36,10 +36,6 @@
 
 (setq scroll-step 1)
 
-;(setq make-backup-files nil)
-;(setq auto-save-list-file-name nil)
-;(setq auto-save-default nil)
-
 (set-input-method 'russian-computer)
 (toggle-input-method)
 (global-set-key [f1] 'toggle-input-method)
