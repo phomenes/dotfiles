@@ -8,21 +8,34 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(let ((packages '(monokai-theme evil auto-complete neotree flx-ido clojure-mode cider go-mode)))
+(let ((packages '(evil auto-complete neotree flx-ido clojure-mode cider go-mode go-eldoc go-autocomplete)))
   (dolist (package packages)
     (unless (package-installed-p package)
       (package-install package))))
-
-;; theme
-
-(add-to-list 'custom-safe-themes "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40")
-(load-theme 'monokai t)
 
 ;; font
 
 (set-default-font
  (cond ((string-equal system-type "gnu/linux") "Ubuntu Mono-12")
        ((string-equal system-type "windows-nt") "Consolas-12")))
+
+;; golang
+
+(add-hook 'before-save-hook #'gofmt-before-save)
+
+(add-hook 'go-mode-hook
+	  (lambda ()
+	    (setq tab-width 4)))
+
+(require 'go-eldoc)
+(add-hook 'go-mode-hook 'go-eldoc-setup)
+
+(require 'go-autocomplete)
+
+;; clojure
+
+(add-hook 'cider-mode-hook #'eldoc-mode)
+(setq nrepl-hide-special-buffers t)
 
 ;; settings
 
@@ -41,17 +54,11 @@
 (global-set-key [f1] 'toggle-input-method)
 
 (column-number-mode t)
-
 (setq tooltip-use-echo-area t)
 
 (electric-indent-mode t)
 
 (show-paren-mode t)
-(setq show-paren-delay 0)
-(setq show-paren-style 'parenthesis)
-(set-face-attribute 'show-paren-match-face nil
-        :weight 'bold :underline t :overline nil
-	:slant 'normal :foreground nil :background nil :inverse-video nil)
 
 (require 'evil)
 (evil-mode t)
@@ -67,16 +74,3 @@
 
 (require 'flx-ido)
 (flx-ido-mode t)
-
-;; golang
-
-(add-hook 'before-save-hook #'gofmt-before-save)
-
-(add-hook 'go-mode-hook
-	  (lambda ()
-	    (setq tab-width 4)))
-
-;; clojure
-
-(add-hook 'cider-mode-hook #'eldoc-mode)
-(setq nrepl-hide-special-buffers t)
