@@ -8,7 +8,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(let ((packages '(evil auto-complete neotree flx-ido clojure-mode cider go-mode go-eldoc go-autocomplete)))
+(let ((packages '(evil auto-complete clojure-mode cider go-mode go-eldoc go-autocomplete helm projectile helm-projectile zenburn-theme solarized-theme)))
   (dolist (package packages)
     (unless (package-installed-p package)
       (package-install package))))
@@ -42,11 +42,6 @@
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
 
-(ido-mode t)
-(ido-everywhere t)
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-
 (setq scroll-step 1)
 
 (set-input-method 'russian-computer)
@@ -69,8 +64,12 @@
 (ac-config-default)
 (add-to-list 'ac-modes 'sql-mode)
 
-(require 'neotree)
-(global-set-key [f12] 'neotree-toggle)
+(require 'helm-config)
+(helm-mode t)
+(setq helm-mode-fuzzy-match t)
 
-(require 'flx-ido)
-(flx-ido-mode t)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+(load-theme 'solarized-light t)
