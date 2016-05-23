@@ -8,7 +8,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(let ((packages '(evil auto-complete clojure-mode cider go-mode go-eldoc go-autocomplete helm projectile helm-projectile zenburn-theme solarized-theme)))
+(let ((packages '(evil auto-complete clojure-mode cider go-mode helm projectile helm-projectile solarized-theme monokai-theme gruvbox-theme)))
   (dolist (package packages)
     (unless (package-installed-p package)
       (package-install package))))
@@ -26,11 +26,6 @@
 (add-hook 'go-mode-hook
 	  (lambda ()
 	    (setq tab-width 4)))
-
-(require 'go-eldoc)
-(add-hook 'go-mode-hook 'go-eldoc-setup)
-
-(require 'go-autocomplete)
 
 ;; clojure
 
@@ -56,6 +51,9 @@
 (show-paren-mode t)
 
 (require 'evil)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x b") #'helm-mini)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
 (evil-mode t)
 (setq evil-auto-indent t)
 
@@ -72,4 +70,4 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
-(load-theme 'solarized-light t)
+(load-theme 'gruvbox t)
