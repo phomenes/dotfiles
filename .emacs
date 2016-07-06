@@ -8,7 +8,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(let ((packages '(evil auto-complete clojure-mode cider go-mode helm projectile helm-projectile solarized-theme monokai-theme gruvbox-theme)))
+(let ((packages '(auto-complete clojure-mode cider go-mode helm projectile helm-projectile gruvbox-theme)))
   (dolist (package packages)
     (unless (package-installed-p package)
       (package-install package))))
@@ -16,8 +16,9 @@
 ;; font
 
 (set-default-font
- (cond ((string-equal system-type "gnu/linux") "Ubuntu Mono-12")
-       ((string-equal system-type "windows-nt") "Consolas-12")))
+ (pcase system-type
+   (`gnu/linux "Ubuntu Mono-12")
+   (`windows-nt "Consolas-12")))
 
 ;; golang
 
@@ -32,7 +33,16 @@
 (add-hook 'cider-mode-hook #'eldoc-mode)
 (setq nrepl-hide-special-buffers t)
 
+(defun cider ()
+  "Connects to nREPL server"
+  (interactive
+   (cider-connect
+    (getenv "LEIN_REPL_HOST")
+    (string-to-number (getenv "LEIN_REPL_PORT")))))
+
 ;; settings
+
+(setq make-backup-files nil)
 
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
@@ -50,13 +60,6 @@
 
 (show-paren-mode t)
 
-(require 'evil)
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x b") #'helm-mini)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
-(evil-mode t)
-(setq evil-auto-indent t)
-
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
@@ -65,6 +68,10 @@
 (require 'helm-config)
 (helm-mode t)
 (setq helm-mode-fuzzy-match t)
+
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x b") #'helm-mini)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
 
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
