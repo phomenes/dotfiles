@@ -8,10 +8,17 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(let ((packages '(auto-complete clojure-mode cider go-mode helm projectile helm-projectile gruvbox-theme)))
+(let ((packages '(ergoemacs-mode clojure-mode cider go-mode markdown-mode smex gruvbox-theme)))
   (dolist (package packages)
     (unless (package-installed-p package)
       (package-install package))))
+
+;; ergoemacs-mode
+
+(require 'ergoemacs-mode)
+(setq ergoemacs-theme nil)
+(setq ergoemacs-keyboard-layout "us")
+(ergoemacs-mode 1)
 
 ;; font
 
@@ -40,7 +47,16 @@
     (getenv "LEIN_REPL_HOST")
     (string-to-number (getenv "LEIN_REPL_PORT")))))
 
+;; smex
+
+(smex-initialize)
+(global-set-key (kbd "M-a") #'smex)
+
 ;; settings
+
+(ido-mode t)
+(ido-everywhere t)
+(setq ido-enable-flex-matching t)
 
 (setq make-backup-files nil)
 
@@ -49,9 +65,9 @@
 
 (setq scroll-step 1)
 
-(set-input-method 'russian-computer)
-(toggle-input-method)
-(global-set-key [f1] 'toggle-input-method)
+;; (set-input-method 'russian-computer)
+;; (toggle-input-method)
+;; (global-set-key [f1] 'toggle-input-method)
 
 (column-number-mode t)
 (setq tooltip-use-echo-area t)
@@ -60,21 +76,21 @@
 
 (show-paren-mode t)
 
-(require 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
-(add-to-list 'ac-modes 'sql-mode)
+;; (require 'auto-complete)
+;; (require 'auto-complete-config)
+;; (ac-config-default)
+;; (add-to-list 'ac-modes 'sql-mode)
 
-(require 'helm-config)
-(helm-mode t)
-(setq helm-mode-fuzzy-match t)
+;; (require 'helm-config)
+;; (helm-mode t)
+;; (setq helm-mode-fuzzy-match t)
 
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x b") #'helm-mini)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
+;; (global-set-key (kbd "M-x") #'helm-M-x)
+;; (global-set-key (kbd "C-x b") #'helm-mini)
+;; (global-set-key (kbd "C-x C-f") #'helm-find-files)
 
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
+;; (projectile-global-mode)
+;; (setq projectile-completion-system 'helm)
+;; (helm-projectile-on)
 
 (load-theme 'gruvbox t)
