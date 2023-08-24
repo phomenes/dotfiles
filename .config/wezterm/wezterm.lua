@@ -18,30 +18,49 @@ end
 config.default_cursor_style = 'BlinkingBlock'
 
 local fonts = {
-  ['Fira Code'] = wezterm.font {
-    family = 'FiraCode Nerd Font',
-    weight = 'Medium',
-    harfbuzz_features = { 'zero' , 'ss01', 'cv05' },
+  ['Fira Code'] = {
+    {
+      family = 'FiraCode Nerd Font',
+      weight = 'Medium',
+      harfbuzz_features = { 'zero' , 'ss01', 'cv05' }
+    },
+    {
+      family = 'Fira Code',
+      weight = 'Medium',
+      harfbuzz_features = { 'zero' , 'ss01', 'cv05' }
+    }
   },
-  ['Cascadia Code'] = wezterm.font {
-    family = 'CaskaydiaCove Nerd Font',
-    harfbuzz_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum' },
+  ['Cascadia Code'] = {
+    {
+      family = 'CaskaydiaCove Nerd Font',
+      harfbuzz_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum' }
+    },
+    {
+      family = 'Cascadia Code',
+      harfbuzz_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum' }
+    }
   },
-  ['Cascadia Code No Ligatures'] = wezterm.font {
-    family = 'CaskaydiaCove Nerd Font',
-    harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0', 'zero' },
+  ['Cascadia Code No Ligatures'] = {
+    {
+      family = 'CaskaydiaCove Nerd Font',
+      harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0', 'zero' }
+    },
+    {
+      family = 'Cascadia Code',
+      harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0', 'zero' }
+    }
   }
 }
 
 local font_sizes = {
   ['Fira Code'] = 12.0,
   ['Cascadia Code'] = 13.0,
-  ['Cascadia Code No Ligatures'] = 13.0,
+  ['Cascadia Code No Ligatures'] = 13.0
 }
 
 local font = 'Cascadia Code'
 
-config.font = fonts[font]
+config.font = wezterm.font_with_fallback(fonts[font])
 config.font_size = font_sizes[font]
 
 config.window_background_opacity = 0.9
