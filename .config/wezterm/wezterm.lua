@@ -27,7 +27,7 @@ local fonts = {
     family = 'Fira Code',
     nerd_family = 'FiraCode Nerd Font',
     weight = 'Medium',
-    harfbuzz_features = { 'zero' , 'ss01', 'cv05' }
+    harfbuzz_features = { 'zero', 'ss01', 'cv05' }
   },
   ['Cascadia Code'] = {
     family = 'Cascadia Code',
@@ -52,59 +52,6 @@ config.font = wezterm.font {
   harfbuzz_features = enable_ligatures and fonts[font_family].harfbuzz_features or { 'calt=0', 'clig=0', 'liga=0', 'zero' }
 }
 config.font_size = font_sizes[font_family]
-
-config.keys = {
-  {
-    key = 't',
-    mods = 'CTRL',
-    action = wezterm.action.SpawnTab 'CurrentPaneDomain'
-  },
-  {
-    key = '1',
-    mods = 'CTRL',
-    action = wezterm.action.ActivateTab(0)
-  },
-  {
-    key = '2',
-    mods = 'CTRL',
-    action = wezterm.action.ActivateTab(1)
-  },
-  {
-    key = '3',
-    mods = 'CTRL',
-    action = wezterm.action.ActivateTab(2)
-  },
-  {
-    key = '4',
-    mods = 'CTRL',
-    action = wezterm.action.ActivateTab(3)
-  },
-  {
-    key = '5',
-    mods = 'CTRL',
-    action = wezterm.action.ActivateTab(4)
-  },
-  {
-    key = '6',
-    mods = 'CTRL',
-    action = wezterm.action.ActivateTab(5)
-  },
-  {
-    key = '7',
-    mods = 'CTRL',
-    action = wezterm.action.ActivateTab(6)
-  },
-  {
-    key = '8',
-    mods = 'CTRL',
-    action = wezterm.action.ActivateTab(7)
-  },
-  {
-    key = '9',
-    mods = 'CTRL',
-    action = wezterm.action.ActivateTab(-1)
-  }
-}
 
 config.window_padding = {
   left = 0,
