@@ -53,12 +53,15 @@ config.font = wezterm.font {
 }
 config.font_size = font_sizes[font_family]
 
-config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
-  bottom = 0
-}
+if os.getenv('WEZTERM_NO_PADDING') then
+  config.window_padding = {
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0
+  }
+end
+
 config.window_background_opacity = 0.9
 config.hide_tab_bar_if_only_one_tab = true
 
