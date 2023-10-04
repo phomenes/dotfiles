@@ -20,19 +20,11 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
-;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
 ;; You can install package-selected-packages by package-install-selected-packages.
 (setq package-selected-packages '(ligature undo-tree rust-mode eglot company zenburn-theme))
-
-;; (when (cl-find-if-not #'package-installed-p package-selected-packages)
-;;   (package-refresh-contents)
-;;   (mapc #'package-install package-selected-packages))
-
-;;(unless package-archive-contents
-;;  (package-refresh-contents))
-;;(package-install-selected-packages 'noconfirm)
 
 ;;
 ;; Fira Code ligatures via ligature.el.
@@ -64,12 +56,6 @@
 (global-undo-tree-mode)
 
 ;;
-;; emacs-lsp
-;;
-
-;;(add-hook 'rust-mode-hook 'lsp-deferred)
-
-;;
 ;; eglot
 ;;
 
@@ -84,17 +70,3 @@
 ;; theme
 
 (load-theme 'zenburn t)
-;;(load-theme 'gruvbox t)
-;;(load-theme 'solarized-dark t)
-;;(load-theme 'color-theme-sanityinc-tomorrow-day t)
-
-;; evil-mode 
-
-;;(evil-mode 1)
-;;(evil-set-undo-system 'undo-tree)
-
-;; There is no simple method to use evil with non-English keyboard.
-;; Just forget about system-wide keyboard layout.
-
-;;(set-input-method 'russian-computer)
-;;(toggle-input-method)
