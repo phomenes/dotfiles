@@ -1,0 +1,15 @@
+[cursor.style]
+blinking = "On"
+
+[font]
+size = 13
+
+[font.normal]
+family = "CaskaydiaCove NF"
+
+[window]
+dynamic_padding = true
+
+[window.padding]
+x = 4
+y = 4
