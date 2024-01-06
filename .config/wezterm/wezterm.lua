@@ -31,7 +31,7 @@ local fonts = {
   },
   ['Cascadia Code'] = {
     family = 'Cascadia Code',
-    nerd_family = 'CaskaydiaCove Nerd Font',
+    nerd_family = 'CaskaydiaCove NF',
     harfbuzz_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum' }
   },
 }
