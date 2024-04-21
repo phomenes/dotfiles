@@ -1,3 +1,5 @@
 [user]
 	email = phomenes@yandex.ru
 	name = phomenes
+[core]
+	editor = nvim
