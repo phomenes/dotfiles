@@ -30,6 +30,7 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
+alt = "mod1"
 terminal = guess_terminal()
 
 keys = [
@@ -71,6 +72,7 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([alt], "Shift_L", lazy.widget["keyboardlayout"].next_keyboard()),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -141,9 +143,10 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
-                widget.Volume(fmt="\uf027 {}"),
+                widget.PulseVolume(fmt="\uf027 {}"),
                 widget.Wallpaper(directory="~/wallpaper", label="\uf03e", random_selection=True, padding=None),
                 widget.Clock(format="%a %d %B %H:%M", padding=12),
+                widget.KeyboardLayout(configured_keyboards=["us", "ru"]),
                 widget.QuickExit(default_text="\uf011", countdown_format="{}", padding=None),
             ],
             24,
