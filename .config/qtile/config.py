@@ -144,7 +144,7 @@ screens = [
                 # widget.StatusNotifier(),
                 widget.Systray(),
                 widget.PulseVolume(fmt="\uf027 {}"),
-                widget.Wallpaper(directory="~/wallpaper", label="\uf03e", random_selection=True, padding=None),
+                widget.Wallpaper(directory="~/wallpapers", label="\uf03e", random_selection=True, padding=None),
                 widget.Clock(format="%a %d %B %H:%M", padding=12),
                 widget.KeyboardLayout(configured_keyboards=["us", "ru"]),
                 widget.QuickExit(default_text="\uf011", countdown_format="{}", padding=None),
